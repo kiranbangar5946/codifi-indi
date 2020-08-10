@@ -47,7 +47,7 @@ const updateClient = async (req, res) => {
 const getTopClients = async (req, res) => {
     try {
 
-        const clients = await Client.find()
+        const clients = await Client.find({})
             .sort('-total_bill')
             .populate({
                 path: 'agency',
@@ -65,6 +65,7 @@ const getTopClients = async (req, res) => {
         return ResponseUtils.success(res, clients);
 
     } catch (error) {
+        console.log('error', error)
         return ResponseUtils.error(res, error);
     }
 }

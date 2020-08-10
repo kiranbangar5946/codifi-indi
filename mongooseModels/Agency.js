@@ -5,7 +5,8 @@ const agencySchema = new Schema(
     {
         name: {
             type: String,
-            required: true
+            required: true,
+            unique: true
         },
         address_one: {
             type: String,
