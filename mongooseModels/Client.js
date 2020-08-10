@@ -22,7 +22,8 @@ const clientSchema = new Schema(
         },
         total_bill: {
             type: Number,
-            required: true
+            required: true,
+            index:true
         }
     },
     {
