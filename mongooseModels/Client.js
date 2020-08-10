@@ -22,8 +22,7 @@ const clientSchema = new Schema(
         },
         total_bill: {
             type: Number,
-            required: true,
-            index:true
+            required: true
         }
     },
     {
@@ -34,4 +33,5 @@ const clientSchema = new Schema(
     }
 );
 
+clientSchema.index({total_bill:-1},{background:true})
 module.exports = mongoose.model("Client", clientSchema);
