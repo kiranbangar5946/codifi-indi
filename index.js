@@ -35,8 +35,8 @@ app.use('/Client', router);
 agencyRoutes(router);
 clientRoutes(router);
 
-const port = process.env.PORT || 4000;
-
+const port = process.env.PORT || 6000;
+console.log("am here",port)
 app.listen(port, (req, res) => {
   console.log(`Server is running on ${port} port.`);
 });
