@@ -22,7 +22,10 @@
     "chalk": "^4.1.0",
     "express": "^4.17.1",
     "mongoose": "^5.9.28",
+    "node": "^14.7.0",
     "nodemon": "^2.0.4",
+    "swagger-jsdoc": "^4.0.0",
+    "swagger-ui-express": "^4.1.4",
     "validator": "^13.1.1"
   }
 }

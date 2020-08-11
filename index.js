@@ -1,4 +1,7 @@
 const express = require('express');
+const swaggerJsDoc = require('swagger-jsdoc');
+const swaggerUi=require('swagger-ui-express');
+
 const app = express();
 
 const agencyRoutes = require('./controllers/AgencyController');
@@ -10,6 +13,29 @@ process.env.NODE_ENV = !process.env.NODE_ENV ? 'development' : process.env.NODE_
 
 global.env = require(__dirname + '/config/env/' + process.env.NODE_ENV);
 require('./config/database');
+
+const swaggerOptions = {
+  swaggerDefinition: {
+    info: {
+      title: 'Agency-client-api',
+      description: 'Agency client information',
+      contacts: {
+        name: 'amazing'
+      },
+      servers: ['http://localhost:5000','https://crud-app-codifi-indi.herokuapp.com/']
+    },
+  
+  },
+  apis: ['./controllers/*.js']
+};
+
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
+app.get('/check',(req,res)=>{
+  res.send('ok')
+})
 
 //initialise express router
 const router = express.Router();
@@ -29,14 +55,14 @@ app.use(function (req, res, next) {
 
 // use express router
 app.use('/agency', router);
-app.use('/Client', router);
+app.use('/client', router);
 
 //call  routing
 agencyRoutes(router);
 clientRoutes(router);
 
-const port = process.env.PORT || 6000;
-console.log("am here",port)
+const port = process.env.PORT || 5000;
+
 app.listen(port, (req, res) => {
   console.log(`Server is running on ${port} port.`);
 });
