@@ -17,7 +17,7 @@ const clientSchema = new Schema(
             required: true,
         },
         phone_number: {
-            type: Number,
+            type: String,
             required: true
         },
         total_bill: {
@@ -33,5 +33,5 @@ const clientSchema = new Schema(
     }
 );
 
-clientSchema.index({total_bill:-1},{background:true})
+clientSchema.index({ total_bill: -1 }, { background: true })
 module.exports = mongoose.model("Client", clientSchema);

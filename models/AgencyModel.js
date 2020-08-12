@@ -3,6 +3,11 @@ const Client = require('../mongooseModels/Client');
 const validator = require('validator');
 const ResponseUtils = require('../utils/response.utils');
 
+/**
+ * Creates agency and client
+ * @param {*} req 
+ * @param {*} res 
+ */
 const createAgencyAndClient = async (req, res) => {
     try {
 
@@ -37,8 +42,7 @@ const createAgencyAndClient = async (req, res) => {
 
         const agency = await Agency.findOneAndUpdate(query, updateObject, options).exec();
 
-
-
+        //if agency is not found retrun error
         if (!agency || !agency._id) {
             return ResponseUtils.error(res, null, 'Failed to save agency', 500);
         }
@@ -56,14 +60,13 @@ const createAgencyAndClient = async (req, res) => {
             client
         }
 
-        return ResponseUtils.success(res, response);
+        return ResponseUtils.success(res, response, 201);
 
     } catch (error) {
         console.log('error', error)
         return ResponseUtils.error(res, error);
     }
 }
-
 
 module.exports = {
     createAgencyAndClient
